@@ -1,2 +1,3 @@
 <?php
-echo "berhasil";
+
+echo "PUBLIC BERHASIL";
