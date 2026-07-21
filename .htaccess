@@ -1,18 +1,25 @@
+Options -Indexes
+
 <IfModule mod_rewrite.c>
+
     RewriteEngine On
     RewriteBase /
 
-    # Menghilangkan index.php dari URL
+    # Jangan rewrite apabila file/folder memang ada
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ index.php/$1 [L]
+
+    # Semua request diarahkan ke index.php
+    RewriteRule ^(.*)$ index.php/$1 [L,QSA]
 
 </IfModule>
+
+# Lindungi file penting
+
 <Files ".env">
-    Order allow,deny
-    Deny from all
+Require all denied
 </Files>
+
 <Files ".gitignore">
-    Order allow,deny
-    Deny from all
+Require all denied
 </Files>
