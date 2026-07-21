@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond /home/username/jejak_project/public%{REQUEST_URI} -f
+RewriteRule ^(.*)$ /home/username/jejak_project/public/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteRule ^(.*)$ index.php [L]
