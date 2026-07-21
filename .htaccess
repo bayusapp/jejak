@@ -1,19 +1,18 @@
-Options -Indexes
-
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    RewriteBase /
 
-    # Jika mengakses root domain
-    RewriteRule ^$ public/ [L]
-
-    # Jangan rewrite jika sudah mengakses folder public
-    RewriteCond %{REQUEST_URI} !^/public/
-
-    # Jangan rewrite jika file/folder memang ada
+    # Menghilangkan index.php dari URL
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-
-    # Arahkan ke folder public
-    RewriteRule ^(.*)$ public/$1 [L]
+    RewriteRule ^(.*)$ index.php/$1 [L]
 
 </IfModule>
+<Files ".env">
+    Order allow,deny
+    Deny from all
+</Files>
+<Files ".gitignore">
+    Order allow,deny
+    Deny from all
+</Files>
