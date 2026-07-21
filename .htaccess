@@ -1,28 +1,4 @@
-Options -Indexes
-
 <IfModule mod_rewrite.c>
-
     RewriteEngine On
-    RewriteBase /
-
-    # Assets
-    RewriteRule ^assets/(.*)$ public/assets/$1 [L]
-
-    # Jangan rewrite apabila file/folder memang ada
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-
-    # Semua request diarahkan ke index.php
-    RewriteRule ^(.*)$ index.php/$1 [L,QSA]
-
+    RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
-
-# Lindungi file penting
-
-<Files ".env">
-Require all denied
-</Files>
-
-<Files ".gitignore">
-Require all denied
-</Files>
