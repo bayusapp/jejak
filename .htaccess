@@ -1,22 +1,7 @@
-<IfModule mod_rewrite.c>
-
 RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond /home/bayusapp/jejak/public%{REQUEST_URI} -f
+RewriteRule ^(.\*)$ /home/bayusapp/jejak/public/$1 [L]
 
-# redirect root ke public
-
-RewriteRule ^$ public/ [L]
-
-# apabila bukan folder public
-
-RewriteCond %{REQUEST_URI} !^/public/
-RewriteRule ^(.\*)$ public/$1 [L]
-
-</IfModule>
-<Files ".env">
-    Order allow,deny
-    Deny from all
-</Files>
-<Files ".gitignore">
-    Order allow,deny
-    Deny from all
-</Files>
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteRule ^(.\*)$ index.php [L]
