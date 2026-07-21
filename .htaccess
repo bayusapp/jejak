@@ -1,7 +1,19 @@
-RewriteEngine On
-RewriteCond %{REQUEST_URI} !^/index\.php
-RewriteCond /home/bayusapp/jejak/public%{REQUEST_URI} -f
-RewriteRule ^(.\*)$ /home/bayusapp/jejak/public/$1 [L]
+Options -Indexes
 
-RewriteCond %{REQUEST_URI} !^/index\.php
-RewriteRule ^(.\*)$ index.php [L]
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Jika mengakses root domain
+    RewriteRule ^$ public/ [L]
+
+    # Jangan rewrite jika sudah mengakses folder public
+    RewriteCond %{REQUEST_URI} !^/public/
+
+    # Jangan rewrite jika file/folder memang ada
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Arahkan ke folder public
+    RewriteRule ^(.*)$ public/$1 [L]
+
+</IfModule>
