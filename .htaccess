@@ -1,11 +1,15 @@
 <IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /
 
-    # Menghilangkan index.php dari URL
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ index.php/$1 [L]
+RewriteEngine On
+
+# redirect root ke public
+
+RewriteRule ^$ public/ [L]
+
+# apabila bukan folder public
+
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.\*)$ public/$1 [L]
 
 </IfModule>
 <Files ".env">
